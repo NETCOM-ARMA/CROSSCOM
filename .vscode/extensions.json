@@ -1,0 +1,11 @@
+{
+	"recommendations": [
+		"joelday.docthis",
+		"christian-kohler.npm-intellisense",
+		"eg2.tslint",
+		"WallabyJs.wallaby-vscode",
+		"christian-kohler.path-intellisense",
+		"PeterJausovec.vscode-docker",
+		"msjsdiag.debugger-for-chrome"
+	]
+}
