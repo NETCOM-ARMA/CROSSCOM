@@ -14,5 +14,16 @@
     "mocha": "^3.2.0",
     "typescript": "^2.1.4",
     "typings": "^2.0.0"
+  },
+  "dependencies": {
+    "@t2ee/vader": "^0.1.2",
+    "@types/koa": "^2.0.35",
+    "@types/pug": "^2.0.3",
+    "koa": "^2.0.0-alpha.7",
+    "pg": "^6.1.2",
+    "pug": "^2.0.0-beta6",
+    "reflect-metadata": "^0.1.8",
+    "ts-router": "^0.2.6",
+    "typeorm": "0.0.5"
   }
 }
