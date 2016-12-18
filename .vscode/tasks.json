@@ -8,8 +8,10 @@
     "suppressTaskName": true,
     "tasks": [
         {
-            "taskName": "install",
-            "args": ["install"]
+            "taskName": "Cluster Bomb",
+            "args": ["run", "cluster-bomb"],
+            "isBuildCommand": true,
+            "isWatching": true
         }
     ]
 }

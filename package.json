@@ -4,10 +4,13 @@
   "description": "Open Source web application used to run the NETCOM ARMA III Platform.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "typescript-build": "tsc -p . ",
+    "typescript-watch": "tsc -p . -w",
+    "cluster-bomb": "concurrently \"npm run typescript-watch\""
   },
   "license": "CC-BY-ND-4.0",
   "devDependencies": {
+    "concurrently": "^3.1.0",
     "mocha": "^3.2.0",
     "typescript": "^2.1.4",
     "typings": "^2.0.0"
