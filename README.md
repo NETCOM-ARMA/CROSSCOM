@@ -51,7 +51,7 @@ Primary development is done using wallaby.js - which is a paid tool - however it
 
 ## Contributors
 
-The ARMA Network Command is a shared community platform from the ground up. We strive to work with any talented members of our community from whereever they might originate
+The ARMA Network Command is a shared community platform from the ground up. We strive to work with any talented members of our community from wherever they might originate
 and as such all contributors are welcome.
 
 All contributions are pursuant to our chosen license, which is detailed below, and we do enforce moderate code quality standards to keep the project at the highest standards.
