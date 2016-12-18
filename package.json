@@ -1,0 +1,15 @@
+{
+  "name": "crosscom",
+  "version": "1.0.0",
+  "description": "Open Source web application used to run the NETCOM ARMA III Platform.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "CC-BY-ND-4.0",
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "typescript": "^2.1.4",
+    "typings": "^2.0.0"
+  }
+}
