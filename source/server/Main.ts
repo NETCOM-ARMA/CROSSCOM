@@ -15,6 +15,9 @@ let router = new Router()
 import { ApplicationController } from "./controllers/app/ApplicationController"
 router.use(ApplicationController)
 
+import { SteamAuthenticationController } from "./controllers/app/SteamAuthenticationController"
+router.use(SteamAuthenticationController)
+
 // API Controllers
 
 // Mount the router

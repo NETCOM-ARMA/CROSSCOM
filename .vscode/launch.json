@@ -20,6 +20,7 @@
             "cwd": "${workspaceRoot}",
             "outFiles": [],
             "sourceMaps": true,
+            "smartStep": true,
             "envFile": "${workspaceRoot}/.env"
         }
     ]

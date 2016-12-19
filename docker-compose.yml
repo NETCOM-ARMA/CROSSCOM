@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+    job-queue:
+        image: redis
+        ports: 
+            - "6379:6379"
+        container_name: redis_job_queue
+    database:
+        image: postgres
+        ports:
+            - "5432:5432"
