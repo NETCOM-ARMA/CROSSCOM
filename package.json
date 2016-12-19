@@ -25,6 +25,7 @@
     "pug": "^2.0.0-beta6",
     "reflect-metadata": "^0.1.8",
     "ts-router": "^0.2.6",
-    "typeorm": "0.0.5"
+    "typeorm": "0.0.5",
+    "underscore": "^1.8.3"
   }
 }

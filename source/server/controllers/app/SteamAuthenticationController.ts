@@ -1,6 +1,7 @@
 import { Path, GET, Response, Status, Context, VaderContext, QueryParam } from "@t2ee/vader"
 import { stringify } from "qs"
 import Axios from "axios"
+import { contains } from "underscore"
 
 @Path("/auth/steam")
 export class SteamAuthenticationController {
@@ -60,16 +61,33 @@ export class SteamAuthenticationController {
             let field_value = context.query[`openid.${field}`]
 
             // Add the value to the parameters
-            steam_openid_verification_parameters[field] = field_value
+            steam_openid_verification_parameters[`openid.${field}`] = field_value
 
         })
 
         let steam_url = `https://steamcommunity.com/openid/login`
 
         // Send a request to steam
-        let response = await Axios.post(steam_url, steam_openid_verification_parameters)
+        let response = await Axios.post(steam_url, stringify(steam_openid_verification_parameters))
 
-        console.log(response)
+        // Verify that the response was valid
+        if ( response.data.includes("is_valid:true") ) {
+
+            // The login was valid - redirect to the success page for the client app to handle
+            return new Response()
+                .status(Status.REDIRECT)
+                .set("Location", `${process.env.ACTIVE_RUNTIME_URL}/app/auth/success`)
+                .build()
+
+        } else {
+
+            // The login was not valid - redirect to the failed page
+            return new Response()
+                .status(Status.REDIRECT)
+                .set("Location", `${process.env.ACTIVE_RUNTIME_URL}/app/auth/failure`)
+                .build()
+
+        }
 
     }
 
