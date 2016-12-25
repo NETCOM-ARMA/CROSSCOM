@@ -1,27 +1,27 @@
-import * as Koa from "koa"
-import { Router } from "@t2ee/vader"
+import * as Express from 'express'
+import { json } from 'body-parser'
+import { graphqlExpress as GraphQL, graphiqlExpress as GraphDocumentation } from 'graphql-server-express'
+import { Graph } from "./graph/Graph"
 
-// Create a new web server
-let application = new Koa()
+// Create an Express application
+let application = Express()
 
-// Create a router to manage the web server
-let router = new Router()
+// Add a JSON body parser
+application.use(json())
 
-// Construct the router by mounting the controllers
+// Add the GraphQL endpoint
+application.use("/graphql", GraphQL({
+    schema: Graph
+}))
 
-// Static Controllers
+// Add the GraphQL documentation endpoint
+application.use("/api_documentation", GraphDocumentation({
+    endpointURL: "/graphql"
+}))
 
-// Application Controllers
-import { ApplicationController } from "./controllers/app/ApplicationController"
-router.use(ApplicationController)
-
+// Add the Steam Authentication endpoints
 import { SteamAuthenticationController } from "./controllers/app/SteamAuthenticationController"
-router.use(SteamAuthenticationController)
+application.get("/auth/steam/request", SteamAuthenticationController.requestAuthentication)
+application.get("/auth/steam/return", SteamAuthenticationController.confirmAuthentication)
 
-// API Controllers
-
-// Mount the router
-application.use(router.routes())
-
-// Launch the application
-application.listen(process.env.PORT)
+application.listen(process.env.PORT);

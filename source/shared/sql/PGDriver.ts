@@ -1,23 +1,40 @@
-import "reflect-metadata"
-import { createConnection } from "typeorm"
+import { Pool } from "pg"
 
 export class PGDriver {
 
-    constructor(connection_url: string) {
+    public connection_pool: Pool
 
-        // Create a new connection
-        return createConnection({
-            driver: {
-                type: "postgres",
-                url: connection_url
-            },
-            autoMigrationsRun: false,
-            autoSchemaSync: false,
-            entities: [
-                
-            ]
-        })
+    constructor() {
+
+        // Instantiate a new connection
+        this.connection_pool = new Pool(process.env.DATABASE_URL)
+
+    }
+
+    /**
+     * Open the database connection
+     * 
+     * 
+     * @memberOf PGDriver
+     */
+    connect() {
+
+        return this.connection_pool.connect()
+
+    }
+
+    /**
+     * Close the connection
+     * 
+     * 
+     * @memberOf PGDriver
+     */
+    disconnect() {
+    
+        return this.connection_pool.end()
 
     }
 
 }
+
+export default new PGDriver()

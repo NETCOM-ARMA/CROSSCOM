@@ -1,14 +1,13 @@
-import { Path, GET, Response, Status, Context, VaderContext, QueryParam } from "@t2ee/vader"
 import { stringify } from "qs"
 import Axios from "axios"
 import { contains } from "underscore"
+import { JWT } from "../../../shared/cryptography/JWT"
+import { serialize } from "cookie"
+import { Request, Response} from "express"
 
-@Path("/auth/steam")
-export class SteamAuthenticationController {
+export abstract class SteamAuthenticationController {
 
-    @GET
-    @Path("/request")
-    async requestAuthentication() {
+    static async requestAuthentication(req: Request, res: Response) {
         
         // Configure a payload for the steam OpenID endpoint
         let steam_openid_configuration = {
@@ -25,40 +24,27 @@ export class SteamAuthenticationController {
 
         let steam_url = `https://steamcommunity.com/openid/login?${steam_parameters}`
         
-        return new Response()
-            .status(Status.REDIRECT)
-            .set("Location", steam_url)
-            .build()
+        res
+            .redirect(steam_url)
 
     }
 
-    @GET
-    @Path("/return")
-    async confirmAuthentication(
-        @QueryParam("openid.signed")
-        signed_fields: string,
-
-        @QueryParam("openid.sig")
-        signature: string,
-
-        @Context()
-        context
-    ) {
+    static async confirmAuthentication(req: Request, res: Response) {
             
         // Start a base object for the authentication check
         let steam_openid_verification_parameters = {
             "openid.ns": "http://specs.openid.net/auth/2.0",
             "openid.mode": "check_authentication",
-            "openid.signed": signed_fields,
-            "openid.sig": signature
+            "openid.signed": req.query["openid.signed"],
+            "openid.sig": req.query["openid.sig"]
         }
 
         // Extract all parameters referenced by the signed field
-        let signed_field_names = signed_fields.split(",")
+        let signed_field_names = req.query["openid.signed"].split(",")
 
         signed_field_names.forEach((field) => {
 
-            let field_value = context.query[`openid.${field}`]
+            let field_value = req.query[`openid.${field}`]
 
             // Add the value to the parameters
             steam_openid_verification_parameters[`openid.${field}`] = field_value
@@ -73,19 +59,23 @@ export class SteamAuthenticationController {
         // Verify that the response was valid
         if ( response.data.includes("is_valid:true") ) {
 
+            // Extract the steamid from the claimed_id
+            let claimed_id = /http:\/\/steamcommunity\.com\/openid\/id\/(.*)/g.exec(req.query["openid.claimed_id"])[1]
+
+            // The authentication was valid - issue a JWT token confirming this information
+            let access_token = await JWT.sign({
+                steam_id: claimed_id
+            }, process.env.AUTHENTICATION_TOKEN_SECRET)
+
             // The login was valid - redirect to the success page for the client app to handle
-            return new Response()
-                .status(Status.REDIRECT)
-                .set("Location", `${process.env.ACTIVE_RUNTIME_URL}/app/auth/success`)
-                .build()
+            res
+                .redirect(`${process.env.ACTIVE_RUNTIME_URL}/app/auth/success?token=${access_token}`)
 
         } else {
 
             // The login was not valid - redirect to the failed page
-            return new Response()
-                .status(Status.REDIRECT)
-                .set("Location", `${process.env.ACTIVE_RUNTIME_URL}/app/auth/failure`)
-                .build()
+            res
+                .redirect(`${process.env.ACTIVE_RUNTIME_URL}/app/auth/failure`)
 
         }
 
