@@ -8,7 +8,7 @@ const User = `
         id: Int!
 
         # The Steam ID of the User
-        steam_id: Int!
+        steam_id: String!
 
         # The chosen Username of the User
         # This is a display name which would not be used in a realism group.
