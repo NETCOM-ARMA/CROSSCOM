@@ -2,6 +2,10 @@ import * as Express from 'express'
 import { json } from 'body-parser'
 import { graphqlExpress as GraphQL, graphiqlExpress as GraphDocumentation } from 'graphql-server-express'
 import { Graph } from "./graph/Graph"
+import PGDriver from "../shared/sql/PGDriver"
+
+// Start the Database connection
+PGDriver.connect()
 
 // Create an Express application
 let application = Express()

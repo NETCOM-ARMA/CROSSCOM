@@ -6,7 +6,7 @@ import UnitMembership from "./types/UnitMembership.type"
 
 let RootQuery = `
     type RootQuery {
-        user(id: Int): User
+        user(id: Int!): User
     }
 `
 

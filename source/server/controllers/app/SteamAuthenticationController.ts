@@ -4,6 +4,7 @@ import { contains } from "underscore"
 import { JWT } from "../../../shared/cryptography/JWT"
 import { serialize } from "cookie"
 import { Request, Response} from "express"
+import { createOrRetrieveUserBySteamID } from "../../../shared/connectors/users/UserMutations"
 
 export abstract class SteamAuthenticationController {
 
@@ -62,9 +63,13 @@ export abstract class SteamAuthenticationController {
             // Extract the steamid from the claimed_id
             let claimed_id = /http:\/\/steamcommunity\.com\/openid\/id\/(.*)/g.exec(req.query["openid.claimed_id"])[1]
 
+            // Retrieve the user assigned to the Steam Token
+            let user = await createOrRetrieveUserBySteamID(claimed_id)
+
             // The authentication was valid - issue a JWT token confirming this information
             let access_token = await JWT.sign({
-                steam_id: claimed_id
+                steam_id: user.steam_id,
+                user_id: user.id
             }, process.env.AUTHENTICATION_TOKEN_SECRET)
 
             // The login was valid - redirect to the success page for the client app to handle
