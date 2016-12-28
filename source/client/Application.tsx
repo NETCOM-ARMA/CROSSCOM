@@ -3,6 +3,7 @@ import { render } from "react-dom"
 import { Routes } from "./MasterRouter"
 import { ApolloClient, createNetworkInterface } from "apollo-client"
 import { ApolloProvider } from 'react-apollo'
+import { get as getCache } from "lscache"
 
 let network_interface = createNetworkInterface({ uri: "/graphql" })
 
@@ -14,7 +15,7 @@ network_interface.use([{
       req.options.headers = {}
     }
 
-    req.options.headers["Authorization"] = localStorage.getItem("crosscom_token") ? localStorage.getItem("crosscom_token") : undefined
+    req.options.headers["Authorization"] = getCache("crosscom_token") ? getCache("crosscom_token") : undefined
     
     next()
 

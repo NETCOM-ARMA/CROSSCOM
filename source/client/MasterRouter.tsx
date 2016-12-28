@@ -1,19 +1,24 @@
 import * as React from "react"
 import { Component } from "react"
-import { Router, Route, browserHistory } from "react-router"
+import { Router, Route, IndexRoute, browserHistory } from "react-router"
 
 // Import default error pages
 import { NotFoundError } from "./components/errors/NotFoundError"
 
 // Import Authentication and registration pages
-
+import { AuthenticationFailed, AuthenticationSuccess } from "./components/authentication/AuthenticationController"
 
 export class Routes extends Component<undefined, undefined> {
 
     render() {
         
         return <Router history={browserHistory}>
-            <Route path="/"></Route>
+            <IndexRoute />
+            <Route key="home" path="/"></Route>
+            <Route path="/app/auth/">
+                <Route path="success" component={AuthenticationSuccess}/>
+                <Route path="failure" component={AuthenticationFailed}/>
+            </Route>
             <Route path="*" component={NotFoundError}/>
         </Router>
 
