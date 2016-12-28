@@ -5,6 +5,7 @@
         "sourceMap": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "jsx": "react",
         "lib": [
             "es6",
             "dom"

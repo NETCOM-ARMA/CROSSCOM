@@ -1,1 +1,14 @@
-h1 Test
+html
+    head
+        title Initializing CROSSCOM
+        meta(name="description" content="CROSSCOM is a platform to manage and run combined unit ARMA III operations.")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    
+    body
+        div(id="render_node")
+
+        script
+            | window.CROSSCOM_ENVIRONMENT = JSON.parse('!{environment_payload}')
+        
+
+        script(src="/statics/scripts/bundle.js")

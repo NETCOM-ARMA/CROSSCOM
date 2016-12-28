@@ -53,4 +53,11 @@ import { SteamAuthenticationController } from "./controllers/app/SteamAuthentica
 application.get("/auth/steam/request", SteamAuthenticationController.requestAuthentication)
 application.get("/auth/steam/return", SteamAuthenticationController.confirmAuthentication)
 
+// Add the Application Endpoints
+import { ApplicationController } from "./controllers/app/ApplicationController"
+application.get("/app*", ApplicationController.renderApplication)
+
+// Add the static hosting to the application
+application.use("/statics", Express.static(".tmp/statics"))
+
 application.listen(process.env.PORT);

@@ -1,25 +1,21 @@
-import { Path, GET, Response } from "@t2ee/vader"
 import { Pug } from "../../../shared/rendering/PugDriver"
+import { Request, Response } from "express"
 
-@Path("/app")
-export class ApplicationController {
+const CLIENT_ENVIRONMENT = {
 
-    CLIENT_ENVIRONMENT = {
+}
 
-    }
+export abstract class ApplicationController {
 
-    @GET
-    @Path("*")
-    async renderApplication() {
+    static async renderApplication(req: Request, res: Response) {
 
         let body = Pug.renderTemplate("application/reactHost", {
-            environment_payload: JSON.stringify(this.CLIENT_ENVIRONMENT)
+            environment_payload: JSON.stringify(CLIENT_ENVIRONMENT)
         })
 
-        return new Response()
+        res
             .status(200)
-            .entity(body)
-            .build()
+            .send(body)
 
     }
 
