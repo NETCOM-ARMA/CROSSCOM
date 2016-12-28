@@ -1,0 +1,36 @@
+body {
+
+    margin: 0;
+
+}
+
+.application_template--frame {
+
+    height: 100%;
+    width: 100%;
+
+    background-color: $application-background;
+
+}
+
+.application_template--body_container {
+    
+    height: calc(100% - 70px);
+
+}
+
+.application_template--content_wrapper {
+
+    opacity: 1;
+    transition: opacity 0.5s;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+
+}
+
+.application_template--content_wrapper__faded {
+    
+    opacity: 0.5;
+
+}

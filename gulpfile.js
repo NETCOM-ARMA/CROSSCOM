@@ -14,7 +14,7 @@ gulp.task("build-styles", function() {
 		}))
 		.pipe(shorthand())
 		.pipe(minify())
-		.pipe(gulp.dest("./.tmp/static/styles"))
+		.pipe(gulp.dest("./.tmp/statics/styles"))
 
 })
 
@@ -29,7 +29,7 @@ gulp.task("styles", ["build-styles", "watch-styles"])
 gulp.task("copy-images", function() {
 
 	gulp.src("./resources/images/**/*")
-		.pipe(gulp.dest('./.tmp/static/images'))
+		.pipe(gulp.dest('./.tmp/statics/images'))
 
 })
 

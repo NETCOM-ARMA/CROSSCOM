@@ -40,11 +40,13 @@
     "@types/pug": "^2.0.3",
     "@types/query-string": "^3.0.31",
     "@types/react": "^0.14.55",
+    "@types/react-motion": "0.0.20",
     "@types/react-router": "^2.0.41",
     "apollo-client": "^0.5.25",
     "axios": "^0.15.3",
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
+    "classnames": "^2.2.5",
     "dataloader": "^1.2.0",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
@@ -63,6 +65,8 @@
     "react": "^15.4.1",
     "react-apollo": "^0.7.2",
     "react-dom": "^15.4.1",
+    "react-motion": "^0.4.7",
+    "react-onclickoutside": "^5.8.3",
     "react-router": "^3.0.0",
     "underscore": "^1.8.3"
   }

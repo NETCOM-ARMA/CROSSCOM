@@ -1,0 +1,28 @@
+.menu_drawer {
+
+    width: 300px;
+    height: calc(100% - 70px);
+    background-color: $black;
+    overflow: auto;
+    position: absolute;
+    z-index: 2;
+
+}
+
+.menu_drawer--primary {
+
+    margin: 20px;
+    padding: 0;
+
+    .menu_drawer--primary__link {
+
+        padding: 0;
+        margin: 0;
+        display: block;
+        width: 100%;
+
+        font-family: 'Lato', sans-serif;
+
+    }
+
+}

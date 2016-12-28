@@ -13,7 +13,6 @@ export class Routes extends Component<undefined, undefined> {
     render() {
         
         return <Router history={browserHistory}>
-            <IndexRoute />
             <Route key="home" path="/"></Route>
             <Route path="/app/auth/">
                 <Route path="success" component={AuthenticationSuccess}/>
