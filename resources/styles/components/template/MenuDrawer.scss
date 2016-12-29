@@ -26,3 +26,40 @@
     }
 
 }
+
+.menu_drawer--logout_button {
+
+    position: absolute;
+    bottom: 0;
+    background-color: $negative-action;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+
+    &:hover {
+        color: darken($white, 10%);
+    }
+
+}
+
+.menu_drawer--current_user_header {
+    color: $white;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    text-decoration: underline;
+    text-align: center;
+    display: block;
+}
+
+.menu_drawer--current_user_name {
+    @extend .menu_drawer--current_user_header;
+
+    font-size: 15px;
+    text-decoration: none;
+    margin-top: 10px;
+}

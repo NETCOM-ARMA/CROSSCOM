@@ -23,8 +23,6 @@ export class NotFoundErrorRaw extends Component<{
             return <div>Loading...</div>
         }
 
-        console.log(this.props.data)
-
         return (
             <ApplicationTemplate>
                 <div className={cx(["full_screen_centered_container"])}>

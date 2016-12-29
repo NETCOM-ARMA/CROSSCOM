@@ -9,6 +9,9 @@ const Localization = `
         # These are shown by the User Interface in the case of malfunction or system instability
         errors_and_system_messages: ErrorLocalization
 
+        # Menu Drawer Names
+        # The names for the links within the menu drawer
+        menu_drawer_links: MenuLocalization
     }
 `
 
@@ -23,4 +26,23 @@ const ErrorLocalization = `
     }
 `
 
-export default () => [Localization, ErrorLocalization]
+const MenuLocalization = `
+    # Localizations for the main application menu drawer
+    type MenuLocalization {
+        
+        # Authentication Display
+        authenticated_as_prepend: String
+
+        # Primary Links
+        dashboard_link: String
+        units_link: String
+        operations_link: String
+        
+        # Signout Button
+        signout_button_link: String
+
+    }
+`
+
+
+export default () => [Localization, ErrorLocalization, MenuLocalization]
