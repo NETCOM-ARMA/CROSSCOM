@@ -20,6 +20,7 @@ export class MenuDrawerRaw extends Component<{
             }
         },
         currentUser: {
+            steam_id: string,
             username: string,
             realism_name: {
                 first: string,
@@ -47,13 +48,15 @@ export class MenuDrawerRaw extends Component<{
                         <span className={cx(["menu_drawer--current_user_name"])}>{
                             this.props.data.currentUser.realism_name ? 
                                 `${this.props.data.currentUser.realism_name.last}.${this.props.data.currentUser.realism_name.first.charAt(0)}` 
-                                : "this.props.data.currentUser.username"
+                                : ( this.props.data.currentUser.username || this.props.data.currentUser.steam_id )
                         }</span>
                         <ul className={cx(["menu_drawer--primary"])}>
-                            <Link to="/app/" className={cx(["menu_drawer--primary__link"])}>{this.props.data.localization.menu_drawer_links.dashboard_link}</Link>
-                            <Link to="/app/units" className={cx(["menu_drawer--primary__link"])}>{this.props.data.localization.menu_drawer_links.units_link}</Link>
-                            <Link to="/app/operations" className={cx(["menu_drawer--primary__link"])}>{this.props.data.localization.menu_drawer_links.operations_link}</Link>
+                            <span className={cx(["menu_drawer--primary__section_title"])}>General Links</span>
+                            <Link to="/app/" activeClassName="menu_drawer--primary__active" className={cx(["menu_drawer--primary__link"])}>{this.props.data.localization.menu_drawer_links.dashboard_link}</Link>
+                            <Link to="/app/units" activeClassName="menu_drawer--primary__active" className={cx(["menu_drawer--primary__link"])}>{this.props.data.localization.menu_drawer_links.units_link}</Link>
+                            <Link to="/app/operations" activeClassName="menu_drawer--primary__active" className={cx(["menu_drawer--primary__link"])}>{this.props.data.localization.menu_drawer_links.operations_link}</Link>
                         </ul>
+                        
                         <Link to="/app/authentication/logout" className={cx(["menu_drawer--logout_button"])}>
                             {this.props.data.localization.menu_drawer_links.signout_button_link}
                         </Link>
@@ -78,6 +81,7 @@ const MenuLocalizations = gql`
             }
         }
         currentUser {
+            steam_id
             username
             realism_name {
                 first

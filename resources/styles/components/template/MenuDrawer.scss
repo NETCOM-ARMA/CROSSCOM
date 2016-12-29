@@ -14,14 +14,37 @@
     margin: 20px;
     padding: 0;
 
+    .menu_drawer--primary__section_title {
+        color: $active-font-color;
+        font-family: 'Lato', sans-serif;
+        font-size: 12px;
+        text-transform: uppercase;
+        text-align: left;
+        display: block;
+
+    }
+
     .menu_drawer--primary__link {
 
-        padding: 0;
-        margin: 0;
+        box-sizing: border-box;
+        padding: 0 0 0 25px;
+        margin: 10px 0 10px 0;
         display: block;
         width: 100%;
 
         font-family: 'Lato', sans-serif;
+        color: $white;
+        text-decoration: none;
+
+        &:hover {
+
+            color: darken($white, 25%);
+
+        }
+
+        &.menu_drawer--primary__active {
+            color: $active-font-color;
+        }
 
     }
 

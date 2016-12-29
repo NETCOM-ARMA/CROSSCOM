@@ -16,6 +16,14 @@ export interface UserStruct {
      * @memberOf UserStruct
      */
     steam_id: string
+    
+    /** 
+     * Indicated if the User has finished setting up their account
+     * 
+     * @type {boolean}
+     * @memberOf UserStruct
+     */
+    is_onboarded: boolean
 
     /**
      * The selected contact email address for the User

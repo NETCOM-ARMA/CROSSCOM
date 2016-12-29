@@ -20,6 +20,10 @@ const User = `
         # Please note that this is not necessarily the User's real name and should not be treated as such
         realism_name: RealismName
 
+        # Represents if the User has completed onboarding
+        # Set after the User has completed the setup process
+        is_onboarded: Boolean!
+
         # An array of objects describing the User's membership of various units on the platform
         units: [UnitMembership]
     }

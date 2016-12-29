@@ -7,6 +7,7 @@ import { NotFoundError } from "./components/errors/NotFoundError"
 
 // Import Authentication and registration pages
 import { AuthenticationFailed, AuthenticationSuccess } from "./components/authentication/AuthenticationController"
+import { OnboardingController } from "./components/onboarding/OnboardingController"
 
 export class Routes extends Component<undefined, undefined> {
 
@@ -17,6 +18,8 @@ export class Routes extends Component<undefined, undefined> {
             <Route path="/app/auth/">
                 <Route path="success" component={AuthenticationSuccess}/>
                 <Route path="failure" component={AuthenticationFailed}/>
+            </Route>
+            <Route path="/app/onboarding" component={OnboardingController}>
             </Route>
             <Route path="*" component={NotFoundError}/>
         </Router>

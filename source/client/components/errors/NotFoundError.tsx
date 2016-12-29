@@ -2,8 +2,9 @@ import * as React from "react"
 import * as cx from "classnames"
 import { Component } from "react"
 import { ApplicationTemplate } from "../template/ApplicationTemplate"
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+import { graphql } from "react-apollo"
+import gql from "graphql-tag"
+import { RedirectIfNotAuthenticated } from "../authentication/RedirectIfNotAuthenticated"
 
 export class NotFoundErrorRaw extends Component<{
     data: {
@@ -25,6 +26,7 @@ export class NotFoundErrorRaw extends Component<{
 
         return (
             <ApplicationTemplate>
+                <RedirectIfNotAuthenticated is_setup_page={false} />
                 <div className={cx(["full_screen_centered_container"])}>
                     <div className={cx(["panel", "information-panel"])}>
                         <div className={cx(["panel_header"])}>

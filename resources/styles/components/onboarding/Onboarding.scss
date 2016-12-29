@@ -1,0 +1,71 @@
+.onboarding-form {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.onboarding-form--header {
+    font-family: "Lato", sans-serif;
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: $active-font-color;
+}
+
+.onboarding-form--intro {
+    font-family: "Lato", sans-serif;
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: $white;
+}
+
+.onboarding-form--double_panel {
+
+    width: 600px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    .panel {
+
+        width: 250px;
+        margin-left: 25px;
+        margin-right: 25px;
+        display: inline-block;
+        position: relative;
+
+        .panel_body {
+            height: 450px;
+
+            p {
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+        }
+
+    }
+}
+
+.onboarding-form--select-button {
+
+    position: absolute;
+    bottom: 25px;
+    height: 50px;
+    width: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: $black;
+    color: $white;
+    text-decoration: none;
+
+    &:hover {
+        background-color: $active-font-color;
+    }
+
+}

@@ -22,7 +22,8 @@ export async function createOrRetrieveUserBySteamID(steamid: string): Promise<Us
 
     return {
         id: created_user.rows[0].id,
-        steam_id: steamid
+        steam_id: steamid,
+        is_onboarded: created_user.rows[0].is_onboarded
     }
 
 }

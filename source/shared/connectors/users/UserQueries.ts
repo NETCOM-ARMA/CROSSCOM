@@ -15,7 +15,8 @@ export async function getUserBySteamID(steamid: string): Promise<UserStruct> {
 
     return {
         id: result.id,
-        steam_id: result.steam_id    
+        steam_id: result.steam_id,
+        is_onboarded: result.is_onboarded
     }
 
 }
@@ -41,7 +42,8 @@ export async function batchGetUsersById(ids: string[]): Promise<UserStruct> {
                 id: matching_entry.id,
                 steam_id: matching_entry.steam_id,
                 email_address: matching_entry.email_address,
-                email_verified: matching_entry.email_verified
+                email_verified: matching_entry.email_verified,
+                is_onboarded: matching_entry.is_onboarded
             } as UserStruct
 
         } else {
