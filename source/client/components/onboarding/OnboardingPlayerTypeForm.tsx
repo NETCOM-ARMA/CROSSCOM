@@ -30,7 +30,7 @@ export class OnboardingPlayerTypeForm extends Component<{
                                 <li><i className={cx(["fa-li", "fa", "fa-check"])}></i>Strong focus on battlefield tactics</li>
                                 <li><i className={cx(["fa-li", "fa", "fa-check"])}></i>Flexible attendance</li>
                             </ul>
-                            <a href="#" className={cx(["onboarding-form--select-button"])}>
+                            <a href="#" className={cx(["onboarding-form--select-button"])} onClick={this.selectPlayerType("tacsim")}>
                                 Select
                             </a>
                         </div>
@@ -52,7 +52,7 @@ export class OnboardingPlayerTypeForm extends Component<{
                                 <li><i className={cx(["fa-li", "fa", "fa-check"])}></i>Focus on authentic recreation of training and combat</li>
                                 <li><i className={cx(["fa-li", "fa", "fa-check"])}></i>Attendance requirements</li>
                             </ul>
-                            <a href="#" className={cx(["onboarding-form--select-button"])}>
+                            <a href="#" className={cx(["onboarding-form--select-button"])} onClick={this.selectPlayerType("milsim")}>
                                 Select
                             </a>
                         </div>
@@ -60,6 +60,19 @@ export class OnboardingPlayerTypeForm extends Component<{
                 </div>
             </div>
         </div>
+
+    }
+
+    selectPlayerType(type) {
+
+        return () => {
+
+            this.props.updateFormState({
+                member_type: type,
+                step: "biographical"
+            })
+
+        }
 
     }
 
